@@ -1,0 +1,420 @@
+%This is just a series of packages and macros that I use frequently
+%It is mantained in the git repo https://github.com/maneandrea/LaTeX-macro
+
+\ProvidesPackage{mymacro-jhep}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Importing packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Some standard packages
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{xspace}
+\usepackage{xparse}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{datetime}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{subfig}
+\usepackage[subfigure]{tocloft}
+\usepackage{enumitem}
+\usepackage[parsep]{collref}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{simplewick}
+\usepackage{youngtab}
+\usepackage{cancel}
+\usepackage{pdfpages}
+\usepackage{color}
+\usepackage{colortbl}
+%\usepackage{longtable}
+\usepackage[a4paper,top=4.5cm,bottom=4cm,inner=3.5cm,outer=3cm,twoside]{geometry}
+\usepackage{dsfont}
+\usepackage{bbm}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{authblk}
+\usepackage[titletoc,title]{appendix}
+\usepackage{multirow}
+\usepackage[symbol]{footmisc}
+\usepackage{caption}
+\usepackage{textgreek}
+\usepackage[scaled]{DejaVuSansMono}
+\usepackage{mathtools}
+\usepackage{mleftright}
+\usepackage{arydshln}
+	\setlength{\dashlinedash}{2pt}
+	\setlength{\dashlinegap}{.8pt}
+
+\usepackage{jheppub}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Equation numbering
+\numberwithin{equation}{section}
+
+%Font
+\renewcommand{\rmdefault}{cmr}
+%Font for title, sections, subsections,...
+\newcommand{\titlesfont}{lmss}
+
+
+\renewcommand\cfttoctitlefont{\fontfamily{\titlesfont}\selectfont\hfill\large\bfseries}
+\renewcommand\cftaftertoctitle{\hfill\mbox{}}
+\renewcommand\cftsecfont{\fontfamily{\titlesfont}\selectfont\small\textbf}
+\renewcommand\cftsubsecfont{\small}
+\renewcommand\cftsecaftersnum{.}
+
+%Page layout
+\setcounter{tocdepth}{2}
+
+%Appendix title
+\newcommand{\Appendices}{\titleformat{\section}{\bfseries\large\fontfamily{\titlesfont}\selectfont}{Appendix \thesection.\;}{0.5ex}{\selectfont\;}\appendices}
+
+%Bibliography style
+\newcommand{\Bibliography}[1][../Bibliography/biblio]{
+           \renewcommand{\appendixname}{\!\lnsp\lnsp}
+           \addcontentsline{toc}{section}{References}
+           \titleformat{\section}{\bfseries\large}{}{}{\centering\fontfamily{\titlesfont}\selectfont}
+           \bibliography{#1}}
+\bibliographystyle{JHEP}
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+%Use this to typeset equations inside tables
+\newlength{\mytextheight}
+\newsavebox{\mytext}
+\newcommand{\tableeqn}[1]{\savebox{\mytext}{$\displaystyle #1$}
+                          \settoheight{\mytextheight}{\usebox{\mytext}}
+                          {\raisebox{\the\mytextheight+.5ex}{}\hspace{-1.8ex}\vspace{.25ex}$\displaystyle #1$}
+                          }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Shortcuts
+\newcommand{\unit}{\mathds{1}}
+\newcommand{\un}[1]{{\underline{#1}}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Str}{Str}
+\DeclareMathOperator{\Disc}{Disc}
+\DeclareMathOperator*{\Res}{Res}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+\newcommand{\fslash}[1]{\cancel{#1}}
+\newcommand{\bvec}[1]{{\boldsymbol{#1}}}
+\newcommand{\mvec}[1]{\vec{#1}}
+\newcommand{\di}{\mathrm{d}}
+\newcommand{\hodge}{\!\ ^\star}
+\newcommand{\F}{{{}_2F_1}}
+\newcommand{\vev}[1]{{\langle #1\rangle}}
+\newcommand{\Vev}[1]{\left\langle #1\right\rangle}
+%
+\newcommand{\lifrac}[2]{\mbox{$\frac{#1}{#2}$}}
+\newcommand{\lsp}{\hspace{1pt}}
+\newcommand{\llsp}{\hspace{0.5pt}}
+\newcommand{\lnsp}{\hspace{-0.8pt}}
+\newcommand{\Hhline}{\noalign{\hrule height .08em}}        %Thick horizontal line (for tables)
+\newcolumntype{?}{!{\vrule width .12em}}                   %Thich vertical line (for tables)
+
+%More shortcuts
+\newcommand{\Db}{{\overbar{D}}}
+\newcommand{\Lb}{{\overbar{L}}}
+\newcommand{\Ob}{{\overbar{O}}}
+\newcommand{\Qb}{{\overbar{Q}}}
+\newcommand{\Sb}{{\overbar{S}}}
+\newcommand{\Tb}{{\overbar{T}}}
+\newcommand{\Xb}{{\overbar{X}}}
+\newcommand{\Yb}{{\overbar{Y}}}
+\newcommand{\Zb}{{\overbar{Z}}}
+%
+\newcommand{\ab}{{\bar{a}}}
+\newcommand{\bb}{{\bar{b}}}
+\newcommand{\hb}{{\bar{h}}}
+\newcommand{\ib}{{\bar{\imath}}}
+\newcommand{\jb}{{\bar{\jmath}}}
+\newcommand{\kb}{{\bar{k}}}
+\newcommand{\lb}{{\bar{l}}}
+\newcommand{\qb}{{\bar{q}}}
+\newcommand{\rb}{{\bar{r}}}
+\newcommand{\sbar}{{\bar{s}}}
+\newcommand{\tb}{{\bar{t}}}
+\newcommand{\ub}{{\bar{u}}}
+\newcommand{\vb}{{\bar{v}}}
+\newcommand{\wb}{{\bar{w}}}
+\newcommand{\xb}{{\bar{x}}}
+\newcommand{\yb}{{\bar{y}}}
+\newcommand{\zb}{{\bar{z}}}
+%
+\newcommand{\alphab}{{\bar{\alpha}}}
+\newcommand{\betab}{{\bar{\beta}}}
+\newcommand{\gammab}{{\bar{\gamma}}}
+\newcommand{\deltab}{{\bar{\delta}}}
+\newcommand{\zetab}{{\bar{\zeta}}}
+\newcommand{\etab}{{\bar{\eta}}}
+\newcommand{\etat}{\tilde{\eta}}
+\newcommand{\chib}{{\bar{\chi}}}
+\newcommand{\thetab}{{\bar{\theta}}}
+\newcommand{\kappab}{{\bar{\kappa}}}
+\newcommand{\lambdab}{{\bar{\lambda}}}
+\newcommand{\phib}{{\bar{\phi}}}
+\newcommand{\varphib}{{\bar{\varphi}}}
+\newcommand{\sigmab}{{\bar{\sigma}}}
+\newcommand{\taub}{{\bar{\tau}}}
+\newcommand{\ellb}{{\bar{\ell}}}
+%
+\newcommand{\alphad}{{\dot{\alpha}}}
+\newcommand{\betad}{{\smash{\dot{\beta}}}}
+\newcommand{\gammad}{{\dot{\gamma}}}
+\newcommand{\deltad}{{\dot{\delta}}}
+%
+\newcommand{\betapd}{{\smash{\dot{\beta}^\prime}}\hspace{-1pt}}
+\newcommand{\betap}{{\smash{\beta^\prime}}\hspace{-1pt}}
+\newcommand{\alphapd}{{\dot{\alpha}^\prime}\hspace{-1pt}}
+\newcommand{\alphap}{{\alpha^\prime}\hspace{-1pt}}
+\newcommand{\etapb}{{\bar{\eta}^\prime}}
+\newcommand{\etap}{\eta^\prime}
+%
+\newcommand{\Thetab}{{\overbarUp\Theta}}
+\newcommand{\Phib}{{\overbarUp{\Phi}}{}}
+%
+\newcommand{\rma}{{\mathrm{a}}}
+\newcommand{\bfa}{{\mathbf{a}}}
+\newcommand{\rmb}{{\mathrm{b}}}
+\newcommand{\bfb}{{\mathbf{b}}}
+\newcommand{\rmx}{{\mathrm{x}}}
+\newcommand{\bfx}{{\mathbf{x}}}
+\newcommand{\rmk}{{\mathrm{k}}}
+\newcommand{\bfk}{{\mathbf{k}}}
+\newcommand{\rms}{{\mathrm{s}}}
+\newcommand{\bfs}{{\mathbf{s}}}
+\newcommand{\rmy}{{\mathrm{y}}}
+\newcommand{\bfy}{{\mathbf{y}}}
+\newcommand{\rmz}{{\mathrm{z}}}
+\newcommand{\bfz}{{\mathbf{z}}}
+%
+\newcommand{\fkg}{{\mathfrak{g}}}
+\newcommand{\fkp}{{\mathfrak{p}}}
+\newcommand{\fkq}{{\mathfrak{q}}}
+\newcommand{\fkl}{{\mathfrak{l}}}
+\newcommand{\fkk}{{\mathfrak{k}}}
+\newcommand{\fkn}{{\mathfrak{n}}}
+\newcommand{\fks}{{\mathfrak{s}}}
+\newcommand{\fko}{{\mathfrak{o}}}
+\newcommand{\fku}{{\mathfrak{u}}}
+%
+\newcommand{\CA}{\mathcal{A}}
+\newcommand{\CB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\CD}{\mathcal{D}}
+\newcommand{\CE}{\mathcal{E}}
+\newcommand{\CF}{\mathcal{F}}
+\newcommand{\CG}{\mathcal{G}}
+\newcommand{\CH}{\mathcal{H}}
+\newcommand{\CI}{\mathcal{I}}
+\newcommand{\CJ}{\mathcal{J}}
+\newcommand{\CK}{\mathcal{K}}
+\newcommand{\CL}{\mathcal{L}}
+\newcommand{\CM}{\mathcal{M}}
+\newcommand{\CN}{\mathcal{N}}
+\newcommand{\CO}{\mathcal{O}}
+\newcommand{\COb}{{\overbar{\mathcal{O}}}}
+\newcommand{\CP}{\mathcal{P}}
+\newcommand{\CQ}{\mathcal{Q}}
+\newcommand{\CR}{\mathcal{R}}
+\newcommand{\CS}{\mathcal{S}}
+\newcommand{\CT}{\mathcal{T}}
+\newcommand{\CU}{\mathcal{U}}
+\newcommand{\CV}{\mathcal{V}}
+\newcommand{\CW}{\mathcal{W}}
+\newcommand{\CX}{\mathcal{X}}
+\newcommand{\CY}{\mathcal{Y}}
+\newcommand{\CZ}{\mathcal{Z}}
+%
+\newcommand{\BBA}{\mathbb{A}}
+\newcommand{\BBB}{\mathbb{B}}
+\newcommand{\BBC}{\mathbb{C}}
+\newcommand{\BBD}{\mathbb{D}}
+\newcommand{\BBE}{\mathbb{E}}
+\newcommand{\BBF}{\mathbb{F}}
+\newcommand{\BBG}{\mathbb{G}}
+\newcommand{\BBH}{\mathbb{H}}
+\newcommand{\BBI}{\mathbb{I}}
+\newcommand{\BBJ}{\mathbb{J}}
+\newcommand{\BBK}{\mathbb{K}}
+\newcommand{\BBL}{\mathbb{L}}
+\newcommand{\BBM}{\mathbb{M}}
+\newcommand{\BBN}{\mathbb{N}}
+\newcommand{\BBO}{\mathbb{O}}
+\newcommand{\BBP}{\mathbb{P}}
+\newcommand{\BBQ}{\mathbb{Q}}
+\newcommand{\BBR}{\mathbb{R}}
+\newcommand{\BBS}{\mathbb{S}}
+\newcommand{\BBT}{\mathbb{T}}
+\newcommand{\BBU}{\mathbb{U}}
+\newcommand{\BBV}{\mathbb{V}}
+\newcommand{\BBW}{\mathbb{W}}
+\newcommand{\BBX}{\mathbb{X}}
+\newcommand{\BBY}{\mathbb{Y}}
+\newcommand{\BBZ}{\mathbb{Z}}
+
+%Groups
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmO}{\mathrm{O}}
+
+%Pauli sigmas
+\newcommand{\sigmau}[3]{\sigma^{#1}_{\phantom{#1}\lnsp#2\dot{#3}}}         			%\sigma with upper \mu
+\newcommand{\sigmabu}[3]{\bar{\sigma}^{#1\dot{#2}#3}}                           		%\sigmab with upper \mu
+\newcommand{\sigmal}[3]{\sigma_{#1#2\dot{#3}}}                           			%\sigmab with lower \mu
+\newcommand{\sigmabl}[3]{\bar{\sigma}_{#1}^{\phantom{#1}\lnsp\dot{#2}#3}}                       %\sigmab with lower \mu
+\newcommand{\sigmamn}[4]{\sigma^{#1#2\phantom{\lnsp#3}#4}_{\phantom{#1#2}\lnsp#3}}              %\sigma \mu \nu
+\newcommand{\sigmabmn}[4]{\bar{\sigma}^{#1#2\dot{#3}}_{\phantom{#1#2\dot{#3}}\lnsp\dot{#4}}}    %\sigmab \mu \nu
+
+%Theorems
+\theoremstyle{plain}
+\renewcommand{\proofname}{\textit{Proof}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+%Names
+\newcommand{\sectionname}{Section\xspace}
+\newcommand{\eqnname}{Eq.\xspace}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\refname}{References}
+%When called from the text use \tablename, \figurename, \appendixname
+\renewcommand{\figurename}{Figure}  
+\renewcommand{\tablename}{Table}
+\renewcommand{\appendixname}{Appendix}
+%This will make the captions in the figures and tables small.
+\captionsetup[figure]{font=small,labelfont={bf,sf},labelsep=period}
+\captionsetup[table]{font=small,labelfont={bf,sf},labelsep=period}
+
+%Revesed arrow
+\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{\hspace{-2pt}#1}}}}\hspace{2pt}}}
+
+%Better overbars
+\newcommand{\overbar}[1]{\mkern 3.5mu\overline{\mkern-3.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\overbarUp}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-2mu}\mkern 2mu}
+
+%Define shortcuts for equation and aligned equation
+\newcommand{\ee}{\begin{equation}}
+\newcommand{\fe}{\end{equation}}
+\newcommand{\ea}{\begin{equation}\begin{aligned}}
+\newcommand{\fea}{\end{aligned}\end{equation}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Equations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%These commands are variations of the ones from the package chet.bst https://ctan.org/pkg/chet by Andreas Stergiou
+%The usage of \eqnal is the same as \eqna, which is described in the documentation of chet.
+
+%Shows tags on the side
+\newcommand{\rcite}{\cite}
+\newcommand{\draftmode}{\usepackage[notref,notcite]{showkeys}}
+\providecommand*\showkeyslabelformat[1]{\normalfont\sffamily\footnotesize#1}
+\newcommand{\foot}{\footnote}
+
+%Define alternative shortcuts for equations
+%Numbered equation with optional label
+\NewDocumentCommand\eqn{mo}{%
+  \IfNoValueTF{#2}
+     {\[ #1 \]}
+     {\begin{equation}\label{#2} #1 \end{equation} \expandafter\newcommand\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces}
+}
+% Numbered aligned equation with optional label in the vertical middle. Does not split across pages.
+\NewDocumentCommand\eqna{mo}{%
+  \IfNoValueTF{#2}
+    {\begin{align*} #1 \end{align*}}
+    {\begin{equation}\label{#2}\begin{aligned} #1 \end{aligned}\end{equation} \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces}
+}
+
+
+% Numbered subequations (from chet)
+% Two subequations
+\NewDocumentCommand\twoseqn{momoo}{%
+    \IfNoValueTF{#5}
+       {\begin{subequations}\begin{align} #1\label{#2} \\ #3 \label{#4}  \end{align}\end{subequations} \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces \expandafter\def\csname #4\endcsname{\eqref{#4}\xspace}\ignorespaces}
+       {\begin{subequations}\label{#5}\begin{align} #1\label{#2} \\ #3 \label{#4}  \end{align}\end{subequations} \expandafter\def\csname #5\endcsname{\eqref{#5}\xspace}\ignorespaces \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces \expandafter\def\csname #4\endcsname{\eqref{#4}\xspace}\ignorespaces}
+}
+% Three subequations
+\NewDocumentCommand\threeseqn{momomoo}{%
+   \IfNoValueTF{#7}
+     {\begin{subequations}\begin{align} #1\label{#2} \\ #3 \label{#4} \\ #5 \label{#6} \end{align}\end{subequations} \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces \expandafter\def\csname #4\endcsname{\eqref{#4}\xspace}\ignorespaces \expandafter\def\csname #6\endcsname{\eqref{#6}\xspace}\ignorespaces}
+     {\begin{subequations}\label{#7}\begin{align} #1\label{#2} \\ #3 \label{#4} \\ #5 \label{#6} \end{align}\end{subequations} \expandafter\def\csname #7\endcsname{\eqref{#7}\xspace}\ignorespaces \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces \expandafter\def\csname #4\endcsname{\eqref{#4}\xspace}\ignorespaces \expandafter\def\csname #6\endcsname{\eqref{#6}\xspace}\ignorespaces}
+}
+% Four subequations
+\NewDocumentCommand\fourseqn{momomomoo}{%
+   \IfNoValueTF{#9}
+     {\begin{subequations}\begin{align} #1\label{#2} \\ #3 \label{#4} \\ #5 \label{#6} \\ #7\label{#8} \end{align}\end{subequations} \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces \expandafter\def\csname #4\endcsname{\eqref{#4}\xspace}\ignorespaces \expandafter\def\csname #6\endcsname{\eqref{#6}\xspace}\ignorespaces \expandafter\def\csname #8\endcsname{\eqref{#8}\xspace}\ignorespaces}
+     {\begin{subequations}\label{#9}\begin{align} #1\label{#2} \\ #3 \label{#4} \\ #5 \label{#6} \\ #7\label{#8} \end{align}\end{subequations} \expandafter\def\csname #9\endcsname{\eqref{#9}\xspace}\ignorespaces \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces \expandafter\def\csname #4\endcsname{\eqref{#4}\xspace}\ignorespaces \expandafter\def\csname #6\endcsname{\eqref{#6}\xspace}\ignorespaces \expandafter\def\csname #8\endcsname{\eqref{#8}\xspace}\ignorespaces}
+}
+
+% Numbered long (possibly across pages) aligned equation with optional label in the last line
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
+\NewDocumentCommand\eqnal{mo}{%
+  \IfNoValueTF{#2}
+    {\begin{align*} #1 \end{align*}}
+    {\begin{align*}\label{#2} #1 \numberthis\end{align*} \expandafter\def\csname #2\endcsname{\eqref{#2}\xspace}\ignorespaces}
+}
+
+
+% Vertical spacing in multiline equations (align, gather, ...)
+\setlength{\jot}{5pt}
+
+%Allow long equations (with \eqnal) to split across pages
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% For writing Mathematica code %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{mathinput}
+\stepcounter{mathinput}
+
+\newcommand{\backtick}{\`{}}
+
+\definecolor{inoutcolor}{rgb}{0.16, 0.34, 0.50}
+
+\newcommand{\codein}[1]{
+    \begin{flalign*}
+        \mbox{\fontfamily{lmss}\selectfont\footnotesize\textcolor{inoutcolor}{In[\themathinput]:=}}\;
+        &\mbox{
+            \fontfamily{DejaVuSansMono-TLF}\selectfont\small#1
+        }&&
+    \end{flalign*}
+\stepcounter{mathinput}
+}
+\newcommand{\codeout}[1]{
+    \begin{flalign*}
+        \addtocounter{mathinput}{-1}
+        \mbox{\fontfamily{lmss}\selectfont\footnotesize\textcolor{inoutcolor}{Out[\themathinput]=}}\;
+        &\mbox{
+            \fontfamily{DejaVuSansMono-TLF}\selectfont\small\textcolor{black!80!white}{#1}
+        }&&
+    \end{flalign*}
+\stepcounter{mathinput}
+}
+\newcommand{\codeno}[1]{
+    \begin{flalign*}
+        \qquad&\mbox{
+    \fontfamily{DejaVuSansMono-TLF}\selectfont\small#1
+    }&&
+\end{flalign*}
+}
+
+\renewcommand{\ttdefault}{lmtt}
