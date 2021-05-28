@@ -110,7 +110,7 @@
 \newcommand{\Appendices}{\titleformat{\section}{\bfseries\large\fontfamily{\titlesfont}\selectfont}{Appendix \thesection.\;}{0.5ex}{\selectfont\;}\appendices}
 
 %Set properties of itemize and enumerate
-\setlist[enumerate]{label=\arabic*., font=\small\sffamily}
+\setlist[enumerate]{label=\arabic*., font=\sffamily}
 \setlist[itemize]{label=\raisebox{.08cm}{\fontsize{3.5pt}{3.5pt}\selectfont$\blacksquare$}}
 
 %Itemize with appropriate spacings
@@ -166,8 +166,8 @@
 \newcommand{\lsp}{\hspace{1pt}}
 \newcommand{\llsp}{\hspace{0.5pt}}
 \newcommand{\lnsp}{\hspace{-0.8pt}}
-\newcommand{\Hhline}{\noalign{\hrule height .08em}}        %Thick horizontal line (for tables)
-\newcolumntype{?}{!{\vrule width .12em}}                   %Thich vertical line (for tables)
+\newcommand{\Hhline}{\hline\\[-1.25em]\hline}  %Thick horizontal line (for tables) This is horrible but nothing else worked
+\newcolumntype{?}{!{\vrule width .08em}}       %Thich vertical line (for tables)
 
 %More shortcuts
 \newcommand{\Db}{{\overbar{D}}}
