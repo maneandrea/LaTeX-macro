@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Some standard packages
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{ifthen}
 \usepackage{xspace}
@@ -251,7 +251,7 @@ roundcorner=5pt}
 \newcommand{\lsp}{\hspace{1pt}}
 \newcommand{\llsp}{\hspace{0.5pt}}
 \newcommand{\lnsp}{\hspace{-0.8pt}}
-\renewcommand{\labelitemi}{\raisebox{.07cm}{\fontsize{4pt}{4pt}\selectfont$\blacksquare$}}
+\newcommand{\labelitemi}{\raisebox{.07cm}{\fontsize{4pt}{4pt}\selectfont$\blacksquare$}}
 \newcommand{\benum}{\begin{enumerate}[\textit{\roman{enumi})}]}
 \newcommand{\eenum}{\end{enumerate}}
 \newcommand{\Hhline}{\noalign{\hrule height .08em}}        %Thick horizontal line (for tables)
@@ -415,7 +415,7 @@ roundcorner=5pt}
 
 
 %Names
-\newcommand{\sectionname}{Section\xspace}
+\renewcommand{\sectionname}{Section\xspace}
 \newcommand{\eqnname}{Eq.\xspace}
 \renewcommand{\contentsname}{Contents}
 \renewcommand{\refname}{References}
