@@ -124,8 +124,9 @@
 \newcommand{\lsp}{\hspace{1pt}}
 \newcommand{\llsp}{\hspace{0.5pt}}
 \newcommand{\lnsp}{\hspace{-0.8pt}}
-\newcommand{\Hhline}{\hline\\[-1.25em]\hline}  %Thick horizontal line (for tables) This is horrible but nothing else worked
+\newcommand{\Hhline}{\thickhline{.08em}}       %Thick horizontal line (for tables)
 \newcolumntype{?}{!{\vrule width .08em}}       %Thich vertical line (for tables)
+\newcolumntype{|}{!{\vrule width .04em}}       %Redefine vertical line so that the lengths work
 
 %More shortcuts
 \newcommand{\Db}{{\overbar{D}}}

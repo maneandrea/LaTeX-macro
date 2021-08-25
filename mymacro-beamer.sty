@@ -254,8 +254,9 @@ roundcorner=5pt}
 \newcommand{\labelitemi}{\raisebox{.07cm}{\fontsize{4pt}{4pt}\selectfont$\blacksquare$}}
 \newcommand{\benum}{\begin{enumerate}[\textit{\roman{enumi})}]}
 \newcommand{\eenum}{\end{enumerate}}
-\newcommand{\Hhline}{\noalign{\hrule height .08em}}        %Thick horizontal line (for tables)
-\newcolumntype{?}{!{\vrule width .12em}}                   %Thich vertical line (for tables)
+\newcommand{\Hhline}{\thickhline{.08em}}       %Thick horizontal line (for tables)
+\newcolumntype{?}{!{\vrule width .08em}}       %Thich vertical line (for tables)
+\newcolumntype{|}{!{\vrule width .04em}}       %Redefine vertical line so that the lengths work
 
 %More shortcuts
 \newcommand{\Db}{{\overbar{D}}}
