@@ -38,6 +38,7 @@
 \usepackage{bbm}
 \usepackage[framemethod=TikZ]{mdframed}
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 \usepackage{titlesec}
 \usepackage{authblk}
 \usepackage[titletoc,title]{appendix}
@@ -211,6 +212,7 @@
 \newcommand{\kappab}{{\bar{\kappa}}}
 \newcommand{\lambdab}{{\bar{\lambda}}}
 \newcommand{\phib}{{\bar{\phi}}}
+\newcommand{\psib}{{\bar{\psi}}}
 \newcommand{\varphib}{{\bar{\varphi}}}
 \newcommand{\sigmab}{{\bar{\sigma}}}
 \newcommand{\taub}{{\bar{\tau}}}
@@ -348,6 +350,10 @@
 
 %Revesed arrow
 \newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{\hspace{-2pt}#1}}}}\hspace{2pt}}}
+%Left-right arrow on top of a symbol
+\newcommand{\cevec}[1]{\overset{\lower1mm\hbox{\begin{tikzpicture}
+\draw [{<[length=.6mm,width=.8mm,slant=.3]}-{>[length=.6mm,width=.8mm,slant=.3]}] (-.08,0) -- (.16,0);
+\end{tikzpicture}}}{#1}}
 
 %Better overbars
 \newcommand{\overbar}[1]{\mkern 3.5mu\overline{\mkern-3.5mu#1\mkern-1.5mu}\mkern 1.5mu}
