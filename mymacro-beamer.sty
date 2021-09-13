@@ -35,7 +35,7 @@
 \usepackage{cancel}
 \usepackage{pdfpages}
 \usepackage{color}
-\usepackage{colortbl}
+\usepackage{array}
 %\usepackage{longtable}
 \usepackage{feynmp}
 \usepackage{dsfont}
@@ -247,6 +247,15 @@ roundcorner=5pt}
 \newcommand{\F}{{{}_2F_1}}
 \newcommand{\vev}[1]{{\langle #1\rangle}}
 \newcommand{\Vev}[1]{\left\langle #1\right\rangle}
+%
+\newcommand{\thickhline}[1]{%
+  \noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
+   \reserved@a\@xthickhline}
+\def\@xthickhline{\ifx\reserved@a\thickhline
+               \vskip\doublerulesep
+               \vskip-\thickarrayrulewidth
+             \fi
+      \ifnum0=`{\fi}}
 %
 \newcommand{\lifrac}[2]{\mbox{$\frac{#1}{#2}$}}
 \newcommand{\lsp}{\hspace{1pt}}
