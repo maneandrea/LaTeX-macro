@@ -443,6 +443,13 @@ roundcorner=5pt}
 \newcommand{\overbar}[1]{\mkern 3.5mu\overline{\mkern-3.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \newcommand{\overbarUp}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-2mu}\mkern 2mu}
 
+%Big"ish" parenteses
+\makeatletter
+\def\bigish#1{{\hbox{$\left#1\vbox to7.5\p@{}\right.\n@space$}}}
+\def\Bigish#1{{\hbox{$\left#1\vbox to10\p@{}\right.\n@space$}}}
+\def\Biggish#1{{\vcenter{\hbox{\scalebox{1.09}{\hbox{$\left#1\vbox to13.5\p@{}\right.\n@space$}}}}}}
+\makeatother
+
 %Revesed arrow
 \newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{\hspace{-2pt}#1}}}}\hspace{2pt}}}
 %Left-right arrow on top of a symbol
