@@ -26,7 +26,7 @@
 \usepackage{graphicx}
 \usepackage[labelformat=empty]{subfig}
 \usepackage{wrapfig}
-\usepackage{enumerate}
+\usepackage{enumitem}
 \usepackage[parsep]{collref}
 \usepackage{mathrsfs}
 \usepackage{float}
@@ -40,15 +40,15 @@
 \usepackage{feynmp}
 \usepackage{dsfont}
 \usepackage{bbm}
-\usepackage[framemethod=TikZ]{mdframed}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta, shadows, shadows.blur}
 \usepackage{multirow}
 \usepackage[symbol]{footmisc}
 \usepackage{caption}
 \usepackage{textgreek}
 \usepackage[scaled]{DejaVuSansMono}
 \usepackage{mathtools}
+\usepackage{setspace}
 \usepackage{mleftright}
 \usepackage{arydshln}
 	\setlength{\dashlinedash}{2pt}
@@ -93,16 +93,55 @@
 \renewcommand\mathfamilydefault{\rmdefault}
 
 %Define boxes
-\mdfdefinestyle{boxstd}{%
-linecolor=temacolor,
-linewidth=2pt,
-backgroundcolor=temacolor!20!white,
-roundcorner=5pt}
+
+\newtcolorbox{boxstd}{
+	enhanced,
+    interior style={top color=blue!70!green!20!white,
+                    bottom color=blue!70!red!10!white,
+                    shading angle=-6},
+	frame hidden,
+    fuzzy shadow={2pt}{-1.2pt}{1.2pt}{0.8pt}{gray}
+}
+
+\newtcolorbox{beamernote}[1]{
+	enhanced,
+	title={\bf #1},
+    colframe=themecolor!20!white,
+    colback=themecolor!10!white,
+    coltitle=black,
+    boxrule=0pt,
+	fuzzy shadow={3pt}{-2.8pt}{.8pt}{1pt}{gray}
+}
+
+%\mdfdefinestyle{boxstd}{%
+%	shadow=true,
+%	linecolor=white,
+%	linewidth=0pt,
+%	roundcorner=6pt
+%	backgroundcolor=blue!70!green!20!white,
+%	apptotikzsetting={%
+%		\tikzset{
+%			mdfbackground/.append style ={%
+%				top color=blue!70!green!20!white,
+%				bottom color=blue!80!red!10!white
+%				},
+%			mdfshadow/.style ={%
+%				blur shadow={shadow blur steps=6,
+%				shadow blur extra rounding=1.3pt,
+%				shadow blur radius=2pt,
+%				shadow xshift=2pt,
+%				shadow yshift=-2pt},
+%				every shadow
+%				}
+%			}
+%		}
+%%	
+%}
 
 %Bibliography color
-\setbeamercolor{bibliography entry author}{fg=temacolor!40!black}
+\setbeamercolor{bibliography entry author}{fg=themecolor!40!black}
 \setbeamercolor{bibliography entry title}{fg=black} 
-\setbeamercolor{bibliography entry location}{fg=temacolor!50!black} 
+\setbeamercolor{bibliography entry location}{fg=themecolor!50!black} 
 
 \makeatletter
 \newcommand{\logourl}[1]{\def\@logo {#1}}
@@ -129,7 +168,7 @@ roundcorner=5pt}
 				{\large\bf \@author}
 				\\\medskip
 				\@institute
-				\\
+				\\[-1em]
 				\includegraphics[scale=0.5]{\@logo}
 				\@moretext
 			\end{center}
@@ -203,9 +242,9 @@ roundcorner=5pt}
 \AtBeginEnvironment{exampleblock}{\setbeamercolor{itemize item}{fg=themecolor}}
 
 %Configuration of the blocks
-\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{blocks}[rounded][shadow=true]
 \setbeamercolor{block body}{bg=themecolor!10!white}
-\setbeamercolor{block title}{bg=themecolor!10!white, fg=black}
+\setbeamercolor{block title}{bg=themecolor!20!white, fg=black}
 
 \setbeamercolor{block body alerted}{bg=themecolor!10!white}
 \setbeamercolor{block title alerted}{bg=themecolor!10!white, fg=black}
@@ -261,9 +300,8 @@ roundcorner=5pt}
 \newcommand{\lsp}{\hspace{1pt}}
 \newcommand{\llsp}{\hspace{0.5pt}}
 \newcommand{\lnsp}{\hspace{-0.8pt}}
-\newcommand{\labelitemi}{\raisebox{.07cm}{\fontsize{4pt}{4pt}\selectfont$\blacksquare$}}
-\newcommand{\benum}{\begin{enumerate}[\textit{\roman{enumi})}]}
-\newcommand{\eenum}{\end{enumerate}}
+\setlist[itemize]{label=\raisebox{.07cm}{\fontsize{4pt}{4pt}\selectfont$\blacksquare$}}
+\setlist[enumerate]{label=\textcolor{themecolor!80!black}{\textbf{\arabic*.}}}
 \newcommand{\Hhline}{\thickhline{.08em}}       %Thick horizontal line (for tables)
 \newcolumntype{?}{!{\vrule width .08em}}       %Thich vertical line (for tables)
 \newcolumntype{|}{!{\vrule width .04em}}       %Redefine vertical line so that the lengths work
