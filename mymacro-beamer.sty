@@ -24,6 +24,7 @@
 \usepackage{amssymb}
 \usepackage{datetime}
 \usepackage{graphicx}
+\usepackage{colortbl}
 \usepackage[labelformat=empty]{subfig}
 \usepackage{wrapfig}
 \usepackage{enumitem}
@@ -34,7 +35,6 @@
 \usepackage{youngtab}
 \usepackage{cancel}
 \usepackage{pdfpages}
-\usepackage{color}
 \usepackage{array}
 %\usepackage{longtable}
 \usepackage{feynmp}
@@ -54,7 +54,7 @@
 	\setlength{\dashlinedash}{2pt}
 	\setlength{\dashlinegap}{.8pt}
 \usepackage[overlay, absolute]{textpos}
-\usepackage[backend=bibtex, style=authoryear, maxcitenames=4]{biblatex}
+\usepackage[backend=bibtex, style=authoryear, maxcitenames=10]{biblatex}
 \usepackage{empheq}
 \usepackage[most]{tcolorbox}
 \usepackage{sansmathfonts}
@@ -100,8 +100,13 @@
                     bottom color=blue!70!red!10!white,
                     shading angle=-6},
 	frame hidden,
-    fuzzy shadow={2pt}{-1.2pt}{1.2pt}{0.8pt}{gray}
+%    fuzzy shadow={2pt}{-1.2pt}{1.2pt}{0.8pt}{gray}
 }
+
+\newtcbox{\tabbox}{boxrule=0pt,colframe=themecolor!20!white,arc=2pt,boxsep=0pt,bottom=0pt,top=1pt,right=0pt,left=0pt,enhanced,
+				   interior style={top color=blue!70!green!20!white,
+                    bottom color=blue!70!red!10!white,
+                    shading angle=-6}}
 
 \newtcolorbox{beamernote}[1]{
 	enhanced,
@@ -110,7 +115,7 @@
     colback=themecolor!10!white,
     coltitle=black,
     boxrule=0pt,
-	fuzzy shadow={3pt}{-2.8pt}{.8pt}{1pt}{gray}
+%	fuzzy shadow={3pt}{-2.8pt}{.8pt}{1pt}{gray}
 }
 
 %\mdfdefinestyle{boxstd}{%
@@ -249,9 +254,6 @@
 \setbeamercolor{block body alerted}{bg=themecolor!10!white}
 \setbeamercolor{block title alerted}{bg=themecolor!10!white, fg=black}
 
-%The numbers inside squares
-\newcommand{\bulletnumber}[1]{\textcolor{themecolor}{$\blacksquare$}\hspace{-.59em}\textcolor{white}{\raisebox{.35mm}{\bf \scriptsize #1}}\,}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -300,8 +302,8 @@
 \newcommand{\lsp}{\hspace{1pt}}
 \newcommand{\llsp}{\hspace{0.5pt}}
 \newcommand{\lnsp}{\hspace{-0.8pt}}
-\setlist[itemize]{label=\raisebox{.07cm}{\fontsize{4pt}{4pt}\selectfont$\blacksquare$}}
-\setlist[enumerate]{label=\textcolor{themecolor!80!black}{\textbf{\arabic*.}}}
+\setlist[itemize]{label=\raisebox{.07cm}{\fontsize{4pt}{4pt}\selectfont\textcolor{themecolor!80!black}{$\blacksquare$}}}
+\setlist[enumerate]{label=\textcolor{themecolor!80!black}{\small{\textbf{\arabic*.}}}}
 \newcommand{\Hhline}{\thickhline{.08em}}       %Thick horizontal line (for tables)
 \newcolumntype{?}{!{\vrule width .08em}}       %Thich vertical line (for tables)
 \newcolumntype{|}{!{\vrule width .04em}}       %Redefine vertical line so that the lengths work
