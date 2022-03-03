@@ -49,7 +49,7 @@
 \usepackage[linktocpage]{hyperref}
 \hypersetup{colorlinks=true, linkcolor=black, citecolor=black, urlcolor=[rgb]{0,0,.6}, runcolor=violet}
 \usepackage{textgreek}
-\usepackage[scaled]{DejaVuSansMono}
+\usepackage[scaled=0.8]{DejaVuSansMono}
 \usepackage{mathtools}
 \usepackage{mleftright}
 \usepackage{arydshln}
@@ -341,8 +341,8 @@
 %Theorems
 \theoremstyle{plain}
 \renewcommand{\proofname}{\textit{Proof}}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{\fontfamily{\titlesfont}\selectfont Theorem}[section]
+\newtheorem{lemma}{\fontfamily{\titlesfont}\selectfont Lemma}[section]
 
 %Names
 \newcommand{\sectionname}{Section\xspace}
