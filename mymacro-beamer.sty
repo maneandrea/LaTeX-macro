@@ -214,12 +214,22 @@
 %Style of citation
 \definecolor{citecolor}{RGB}{0, 64, 168}
 \newcommand{\wrapper}[1]{\textcolor{citecolor}{\footnotesize[#1]}}
+\newcommand{\wrapperNoBrakets}[1]{\textcolor{citecolor}{\footnotesize{#1}}}
 
 %This removes the "and" before the last name
 \renewcommand{\finalnamedelim}{\multinamedelim}
 
 %This is the default Author, yyyy Format
 \DeclareCiteCommand{\cite}[\wrapper]%
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\indexnames{labelname}%
+   \printtext[bibhyperref]{\printnames{labelname} (\printfield{year})}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+%This is the default Author, yyyy Format but without the brakets
+\DeclareCiteCommand{\citeNoBrakets}[\wrapperNoBrakets]%
   {\boolfalse{citetracker}%
    \boolfalse{pagetracker}%
    \usebibmacro{prenote}}

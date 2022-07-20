@@ -55,6 +55,17 @@
 
 \usepackage{jheppub}
 
+%Tinker with jheppub: this makes all pages to have numbers
+\makeatletter
+\renewcommand\ps@myplain{
+\pagenumbering{arabic}
+\renewcommand\@oddfoot{\hfill-- \thepage\ --\hfill}
+\renewcommand\@evenfoot{\hfill-- \thepage\ --\hfill}
+\renewcommand\@oddhead{}}
+%Make the "Prepared for ..." disappear
+\gdef\@fpheader{}
+\makeatother
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,7 +141,6 @@
              \fi
       \ifnum0=`{\fi}}
 %
-\newcommand{\lifrac}[2]{\mbox{$\frac{#1}{#2}$}}
 \newcommand{\lsp}{\hspace{1pt}}
 \newcommand{\llsp}{\hspace{0.5pt}}
 \newcommand{\lnsp}{\hspace{-0.8pt}}
