@@ -143,6 +143,38 @@
 %%	
 %}
 
+%Define gradient text
+\show\pgfextractx
+
+\newlength{\mywidth}
+\newlength{\myheight}
+
+% computes width and height of tikzpicture
+\makeatletter
+\newcommand{\pgfsize}[2]{ % #1 = width, #2 = height
+ \pgfextractx{\@tempdima}{\pgfpointdiff{\pgfpointanchor{current bounding box}{south west}}
+ {\pgfpointanchor{current bounding box}{north east}}}
+ \global#1=\@tempdima
+ \pgfextracty{\@tempdima}{\pgfpointdiff{\pgfpointanchor{current bounding box}{south west}}
+ {\pgfpointanchor{current bounding box}{north east}}}
+ \global#2=\@tempdima
+}
+\makeatother
+
+\newcommand{\fadedtext}[3]{ % #1 = left color, #2 = right color, #3 = text
+	\begin{tikzfadingfrompicture}[name=fading]
+	  \node [text=transparent!20]
+		{#3};
+	  \pgfsize{\mywidth}{\myheight}
+	\end{tikzfadingfrompicture}
+	% Now we use the fading in another picture:
+	\begin{tikzpicture}
+	  \shade[path fading=fading,fit fading=false,
+	         left color=#1, right color=#2, shading angle=120, scale=.5]
+        (-\the\mywidth,-\the\myheight) rectangle (\the\mywidth,\the\myheight);
+	\end{tikzpicture}
+}
+
 %Bibliography color
 \setbeamercolor{bibliography entry author}{fg=themecolor!40!black}
 \setbeamercolor{bibliography entry title}{fg=black} 
