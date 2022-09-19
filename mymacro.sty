@@ -361,8 +361,8 @@
 %Revesed arrow
 \newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{\hspace{-2pt}#1}}}}\hspace{2pt}}}
 %Left-right arrow on top of a symbol
-\newcommand{\cevec}[1]{\overset{\lower1mm\hbox{\begin{tikzpicture}
-\draw [{<[length=.6mm,width=.8mm,slant=.3]}-{>[length=.6mm,width=.8mm,slant=.3]}] (-.08,0) -- (.16,0);
+\newcommand{\cevec}[1]{\overset{\lower2mm\hbox{\hspace{2pt}\begin{tikzpicture}
+\draw [{<[length=.5mm,width=.8mm,slant=.3]}-{>[length=.5mm,width=.8mm,slant=.3]}, line width=.155mm] (-.02,0) -- (.18,0);
 \end{tikzpicture}}}{#1}}
 
 %Better overbars
